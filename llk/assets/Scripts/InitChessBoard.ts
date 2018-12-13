@@ -23,19 +23,18 @@ export  class InitChessBoard extends cc.Component {
         this._canvasGrids = [];
 		for (var i = 0; i < chessBoardMsg.row + 2; i++) {
 			this._canvasGrids[i] = []; //在声明二维
-			for (var j = 0; j < chessBoardMsg.row + 2; j++) {
+			for (var j = 0; j < chessBoardMsg.column + 2; j++) {
 				this._canvasGrids[i][j] = -1;
 			}
 		}
 		this.chessNdArr = [];
 		for (var i = 0; i < chessBoardMsg.row; i++) {
 			this.chessNdArr[i] = []; //在声明二维
-			for (var j = 0; j < chessBoardMsg.row; j++) {
+			for (var j = 0; j < chessBoardMsg.column; j++) {
 				this.chessNdArr[i][j] = null;
 			}
         }
         this.initData();
-        
     }
 
 
@@ -79,7 +78,6 @@ export  class InitChessBoard extends cc.Component {
 
 
     initMap() {
-		var self = this;
 		for (var row = 0; row < chessBoardMsg.row; row++) {
 			for (var column = 0; column < chessBoardMsg.column ; column++) {
 				//设置node的位置
@@ -90,10 +88,8 @@ export  class InitChessBoard extends cc.Component {
 				chess.setPosition(cc.v2(chess_x,chess_y));
 				chess.getComponent('Chess').pointX = row;
 				chess.getComponent('Chess').pointY = column;
-		
 			}
 		}
-
 	}
 
     start () {
